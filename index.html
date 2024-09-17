@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #D3D3D3;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            position: relative; 
+        }
+        .login-container img {
+            width: 157.82px; 
+            height: 68.22px; 
+            margin-bottom: 20px;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .login-container input[type="text"]:focus,
+        .login-container input[type="password"]:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        .login-container a {
+            display: block;
+            margin-bottom: 20px;
+            color: black;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #FFFF00;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .login-container button:hover {
+            background-color: #800080;
+        }
+        .additional-image {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+        .spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .spinner img {
+            width: 1920px; 
+            height: 1080px; 
+        }
+    </style>
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.querySelector('input[name="username"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            const errorMessage = document.getElementById('error-message');
+            const spinner = document.getElementById('spinner');
+
+            console.log(`Username: ${username}, Password: ${password}`); 
+
+            const correctUsername = "admin";
+            const correctPassword = "password123";
+
+            if (username === correctUsername && password === correctPassword) {
+                
+                spinner.style.display = 'flex';
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 5000); 
+            } else {
+                errorMessage.textContent = "Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.";
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="login-container">
+    <form onsubmit="handleLogin(event)">
+        <img src="logo2.png" alt="User Icon">
+        <input type="text" placeholder="User" name="username" required>
+        <input type="password" placeholder="Password" name="password" required>
+        <a href="#">Forgot Password?</a>
+        <button type="submit">Login</button>
+        <img src="banner.png" alt="Move with reason" class="additional-image">
+        <p id="error-message" class="error-message"></p>
+    </form>
+</div>
+
+<div id="spinner" class="spinner">
+    <img src="loading.gif" alt="Loading...">
+</div>
+
+</body>
+</html>
